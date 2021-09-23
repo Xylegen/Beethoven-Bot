@@ -15,10 +15,10 @@ TOKEN=os.environ['TOKEN']
 async def on_ready():
   print(f'{bot.user.name} has been activated')
 
+
 async def setup():
   await bot.wait_until_ready()
   bot.add_cog(MusicPlayer(bot))
-
 
 
 bot.loop.create_task(setup())

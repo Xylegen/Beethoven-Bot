@@ -15,6 +15,12 @@ class MusicPlayer(commands.Cog):
   def setup(self):
     for guild in self.bot.guilds:
       self.song_queue[guild.id]=[]
+  
+  @commands.Cog.listener()
+  async def on_guild_join(self,guild):
+    self.song_queue[guild.id]=[]
+    print("added")
+
 
   async def check_queue(self,ctx):
     if len(self.song_queue[ctx.guild.id]) > 0:
@@ -136,19 +142,16 @@ class MusicPlayer(commands.Cog):
   
   
   @commands.command()
-  async def queue(self, ctx): # display the current queue
+  async def queue(self, ctx): 
     
     if len(self.song_queue[ctx.guild.id]) == 0:
       return await ctx.send("There are currently no songs in the queue.")
 
     embed = discord.Embed(title="Song Queue", description="", colour=discord.Colour.dark_gold())
+    
     YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': True, "quiet": True}
+    
     i = 1
-    #for url in self.song_queue[ctx.guild.id]:
-     #embed.description += f"{i}) {url}\n"
-
-     #i += 1
-
     for url in self.song_queue[ctx.guild.id]:
       with YoutubeDL(YDL_OPTIONS) as ydl:
         info_dict = ydl.extract_info(url, download=False)
