@@ -27,6 +27,8 @@ class MusicPlayer(commands.Cog):
       k=self.song_queue[ctx.guild.id]
       m=k.pop(0)
       await self.play_song(ctx,m)
+    else:
+      await ctx.send("No more songs in queue.")
 
   async def search_song(self,amount,song,get_url=False):
 
@@ -46,8 +48,6 @@ class MusicPlayer(commands.Cog):
     ctx.voice_client.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(url,**FFMPEG_OPTIONS)),after=lambda error:self.bot.loop.create_task(self.check_queue(ctx)))
 
     ctx.voice_client.source.volume=0.5
-
-
 
 
   @commands.command()
@@ -91,7 +91,7 @@ class MusicPlayer(commands.Cog):
       
       song=result[0]
 
-    if ctx.voice_client.source is not None:
+    if ctx.voice_client.is_playing():
       queue_len=len(self.song_queue[ctx.guild.id])
 
       if queue_len < 20:
@@ -159,6 +159,11 @@ class MusicPlayer(commands.Cog):
       embed.description+=f"{i}) [{title}]({url})\n"
 
       i+=1
+    #for url in self.song_queue[ctx.guild.id]:
+      #info=pafy.new(url)
+      #title=info.title
+      #embed.description+=f"{i}) [{title}]({url})\n"
+      #i+=1
 
     embed.set_footer(text="Displaying current queue.")
     await ctx.send(embed=embed)
