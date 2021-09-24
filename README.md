@@ -2,7 +2,7 @@
 Music bot for discord which allows playing songs with keyword identification. Pause, resume, queue, stop and search features also included.
 
 # Authorization
-To authorize the bot on your server, use [this](https://discord.com/api/oauth2/authorize?client_id=889793325043945473&permissions=8&scope=bot) link. Grant permissions and the bot will be authorized on your server.
+To authorize the bot on your server, use [this](https://discord.com/api/oauth2/authorize?client_id=889793325043945473&permissions=309272275968&scope=bot) link. Grant permissions and the bot will be authorized on your server.
 
 # Commands
 
