@@ -10,7 +10,7 @@ To authorize the bot on your server, use [this](https://discord.com/api/oauth2/a
 
 !leave - Request the bot to leave your voice channel
 
-!play song_name - Request the bot to play the song. If the command is used while a song is already playing, the requested song will be added to a queue, and the requests will be serviced after the current song finished playing. Max queue size is 20.
+!play [song_name] - Request the bot to play the song. If the command is used while a song is already playing, the requested song will be added to a queue, and the requests will be serviced after the current song finished playing. Max queue size is 20.
 
 !pause - Request the bot to pause the current song
 
@@ -18,6 +18,8 @@ To authorize the bot on your server, use [this](https://discord.com/api/oauth2/a
 
 !skip - Request the bot to skip the current song and move to the next one in the list
 
-!search song_name- Request Top 5 search results from Youtube along with their urls (to be used in the play command)
+!search [song_name]- Request Top 5 search results from Youtube along with their urls (to be used in the play command)
 
 !queue - Displays the current queue
+
+!rqueue [index] - Removes the song at given index from the queue
