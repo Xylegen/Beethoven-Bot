@@ -32,7 +32,7 @@ class MusicPlayer(commands.Cog):
 
   async def search_song(self,amount,song,get_url=False):
 
-    info = await self.bot.loop.run_in_executor(None, lambda: youtube_dl.YoutubeDL({"format":"bestaudio","quiet": True, "noplaylist": True,"rm-cache-dir": True,"no-cache-dir": True}).extract_info(f"ytsearch{amount}:{song}",download=False,ie_key="YoutubeSearch"))
+    info = await self.bot.loop.run_in_executor(None, lambda: youtube_dl.YoutubeDL({"format":"bestaudio","quiet": True,"rm-cache-dir": True,"no-cache-dir": True}).extract_info(f"ytsearch{amount}:{song}",download=False,ie_key="YoutubeSearch"))
 
     if len(info["entries"]) == 0: 
       return None
@@ -184,10 +184,15 @@ class MusicPlayer(commands.Cog):
       self.song_queue[ctx.guild.id].pop(index-1)
       await ctx.send(f"Song at index {index} has been removed")
 
+  @commands.command()
+  async def cqueue(self,ctx):
+    self.song_queue[ctx.guild.id]=[]
+    await ctx.send("Queue has been cleared")
+
 
   @commands.command()
   async def help(self,ctx):
-    await ctx.send(">>> HELP PAGE \n\n1. !join - Request the bot to join your voice channel\n\n2. !leave - Request the bot to leave your voice channel\n\n3. !play [song_name] - Request the bot to play the song. If the command is used while a song is already playing, the requested song will be added to a queue, and the requests will be serviced after the current song finished playing. Max queue size is 20.\n\n4. !pause - Request the bot to pause the current song\n\n5. !resume - Request the bot to resume the paused song\n\n6. !skip - Request the bot to skip the current song and move to the next one in the list\n\n7. !search [song_name] - Request Top 5 search results from Youtube along with their urls (to be used in the play command)\n\n8. !queue - Displays the current queue\n\n9. !rqueue [index] - Removes the song at given index from the queue")
+    await ctx.send(">>> HELP PAGE \n\n1. !join - Request the bot to join your voice channel\n\n2. !leave - Request the bot to leave your voice channel\n\n3. !play [song_name] - Request the bot to play the song. If the command is used while a song is already playing, the requested song will be added to a queue, and the requests will be serviced after the current song finished playing. Max queue size is 20.\n\n4. !pause - Request the bot to pause the current song\n\n5. !resume - Request the bot to resume the paused song\n\n6. !skip - Request the bot to skip the current song and move to the next one in the list\n\n7. !search [song_name] - Request Top 5 search results from Youtube along with their urls (to be used in the play command)\n\n8. !queue - Displays the current queue\n\n9. !rqueue [index] - Removes the song at given index from the queue\n\n10. !cqueue - Clears the current queue")
 
 
 
