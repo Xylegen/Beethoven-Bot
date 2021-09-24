@@ -182,7 +182,7 @@ class MusicPlayer(commands.Cog):
       return await ctx.send("Given index does not exist in queue")
     else:
       self.song_queue[ctx.guild.id].pop(index-1)
-      await ctx.send(f"Song at index {index} has been removed.)
+      await ctx.send(f"Song at index {index} has been removed")
 
 
   @commands.command()
