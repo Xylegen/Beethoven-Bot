@@ -104,11 +104,11 @@ class MusicPlayer(commands.Cog):
     await self.play_song(ctx,song)
     await ctx.send(f"Now playing: {song}")
 
-  @commands.command()
-  async def stop(self,ctx):
-    if not ctx.voice_client.is_playing():
-      return await ctx.send("No song is playing currently")
-    ctx.voice_client.stop()
+  #@commands.command()
+  #async def stop(self,ctx):
+    #if not ctx.voice_client.is_playing():
+      #return await ctx.send("No song is playing currently")
+    #ctx.voice_client.stop()
 
   @commands.command()
   async def pause(self,ctx):
